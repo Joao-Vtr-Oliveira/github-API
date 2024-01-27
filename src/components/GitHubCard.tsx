@@ -20,6 +20,7 @@ import DateConverter from '../requests/DateConverter';
 import { githubRepoType } from '../types/githubRepoType';
 import UserDataList from './UserDataList';
 import ReposData from './ReposData';
+import UserSocialInfo from './UserSocialInfo';
 
 const GitHubCard = () => {
 	const [user, setUser] = useState('joao-vtr-oliveira');
@@ -78,7 +79,7 @@ const GitHubCard = () => {
 					<Text>{data?.bio ? data.bio : ''}</Text>
 
 					{data && <UserDataList data={data} />}
-					{data && <UserDataList data={data} />}
+					{data && <UserSocialInfo data={data} />}
 
 					{repoData && <ReposData repoData={repoData} />}
 					<Heading size='10px' mt={5}>
