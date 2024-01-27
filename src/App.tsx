@@ -1,8 +1,10 @@
+import GitHubCard from './components/GitHubCard'
+
 function App() {
 
   return (
-    <div>
-      <h1 className='border p-3'>Vai tomar no cu</h1>
+    <div className='h-screen flex flex-col justify-center items-center bg-black'>
+      <GitHubCard />
     </div>
   )
 }
