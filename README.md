@@ -23,6 +23,11 @@ Teste o projeto [aqui](https://joao-vtr-oliveira.github.io/github-API/).
 <p align="center" style='font-size: 25px; text-decoration: underline; font-weight: bold'>Tela:</p>
 
 <figure>
-  <img src='https://github.com/Joao-Vtr-Oliveira/github-API/assets/114768964/e9eb12ff-b67c-4e92-b54c-bc5a68f50b7c' alt='Tela do projeto' />
-  <figcaption>Tela</figcaption>
+  <img src='https://github.com/Joao-Vtr-Oliveira/github-API/assets/114768964/968bb148-4312-4e29-a675-4be5e5cc9b7b' alt='Tela do projeto 1' />
+  <figcaption>Tela 1</figcaption>
+</figure>
+
+<figure>
+  <img src='https://github.com/Joao-Vtr-Oliveira/github-API/assets/114768964/890d6a9d-8760-479d-ba81-3f1d24ea68d1' alt='Tela do projeto 2' />
+  <figcaption>Tela 2</figcaption>
 </figure>
