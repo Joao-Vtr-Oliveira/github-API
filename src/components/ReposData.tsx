@@ -18,6 +18,7 @@ const ReposData = ({ repoData }: { repoData: githubRepoType[] }) => {
 				</Heading>
 			</CardHeader>
 			<CardBody>
+				{repoData.length > 0 &&
 				<ul style={{ listStyleType: 'none', padding: 0 }}>
 					{repoData?.map((repo, index) => (
 						<Box key={index} mb={4} p={4} borderRadius='md' bg='gray.700'>
@@ -50,6 +51,7 @@ const ReposData = ({ repoData }: { repoData: githubRepoType[] }) => {
 						</Box>
 					))}
 				</ul>
+				}
 			</CardBody>
 		</Card>
 	);
