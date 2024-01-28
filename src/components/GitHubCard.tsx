@@ -1,3 +1,6 @@
+// GitHubCard.jsx
+
+import React, { useEffect, useState } from 'react';
 import {
 	Button,
 	Card,
@@ -10,7 +13,6 @@ import {
 	Input,
 	Text,
 } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
 import {
 	githubRepoRequest,
 	githubUserRequest,
@@ -32,10 +34,14 @@ const GitHubCard = () => {
 	};
 
 	const fetchButton = async () => {
-		const info = await githubUserRequest(user);
-		const repoInfo = await githubRepoRequest(user);
-		setData(info);
-		setRepoData(repoInfo);
+		try {
+			const info = await githubUserRequest(user);
+			const repoInfo = await githubRepoRequest(user);
+			setData(info);
+			setRepoData(repoInfo);
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		}
 	};
 
 	useEffect(() => {
@@ -43,17 +49,14 @@ const GitHubCard = () => {
 	}, []);
 
 	return (
-		<Flex
-			height='100vh'
-			align='center'
-			justify='center'
-			className='w-screen md:w-4/5'
-		>
-			<Card className='w-screen md:w-3/5 h-screen'>
-				<CardHeader className='flex flex-col items-center justify-center'>
-					<Heading>GitHub API</Heading>
+		<Flex minH='100vh' align='center' justify='center'>
+			<Card className='w-full max-w-2xl h-full overflow-auto'>
+				<CardHeader className='flex items-center justify-center'>
+					<Heading as='h1' size='xl'>
+						GitHub API
+					</Heading>
 				</CardHeader>
-				<CardBody className='flex flex-col items-center'>
+				<CardBody className='flex flex-col items-center p-4'>
 					<Image
 						borderRadius='full'
 						boxSize='150px'
@@ -62,13 +65,15 @@ const GitHubCard = () => {
 								? data.avatar_url
 								: 'https://avatars.githubusercontent.com/u/9919?s=460&v=4'
 						}
+						alt='User Avatar'
 					/>
-					<Heading className='mb-5 mt-3'>
+					<Heading as='h2' size='lg' mt={3} mb={2}>
 						{data?.login ? (
 							<a
-								className='hover:underline hover:text-blue-400'
-								target='_blank'
 								href={data.html_url}
+								target='_blank'
+								rel='noopener noreferrer'
+								className='hover:underline hover:text-blue-400'
 							>
 								{data.login}
 							</a>
@@ -76,29 +81,34 @@ const GitHubCard = () => {
 							'Nome'
 						)}
 					</Heading>
-					<Text>{data?.bio ? data.bio : ''}</Text>
+					<Text textAlign='center' mb={4}>
+						{data?.bio || 'No bio available.'}
+					</Text>
 
 					{data && <UserDataList data={data} />}
 					{data && <UserSocialInfo data={data} />}
 
 					{repoData && <ReposData repoData={repoData} />}
-					<Heading size='10px' mt={5}>
+					<Text fontSize='sm' mt={5}>
 						{data?.created_at && (
 							<>
 								Account created at: <DateConverter date={data.created_at} />
 							</>
 						)}
-					</Heading>
+					</Text>
 				</CardBody>
-				<CardFooter justify='center' className='flex'>
+				<CardFooter justify='center' className='flex p-4'>
 					<Input
-						w='50%'
-						mr={5}
+						flex='1'
+						mb={{ base: 2, sm: 0 }}
+						mr={{ base: 0, sm: 2 }}
 						placeholder='Username'
 						value={user}
 						onChange={handleChange}
 					/>
-					<Button onClick={fetchButton}>Search</Button>
+					<Button onClick={fetchButton} colorScheme='teal'>
+						Search
+					</Button>
 				</CardFooter>
 			</Card>
 		</Flex>

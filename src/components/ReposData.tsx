@@ -1,43 +1,53 @@
-import { Card, CardBody, CardHeader, Heading, Text } from '@chakra-ui/react';
+import {
+	Box,
+	Card,
+	CardBody,
+	CardHeader,
+	Heading,
+	Link,
+	Text,
+} from '@chakra-ui/react';
 import { githubRepoType } from '../types/githubRepoType';
 
 const ReposData = ({ repoData }: { repoData: githubRepoType[] }) => {
 	return (
-		<Card
-			mt={5}
-			h={250}
-			maxWidth={500}
-			minWidth={250}
-			color='white'
-			bg='black'
-			overflowY='scroll'
-		>
-			<CardHeader textAlign='center'>
-				<Heading size='10' className='text-3xl'>
-					Repo Info:
+		<Card mt={5} borderRadius='md' color='white' bg='gray.800'>
+			<CardHeader textAlign='center' bg='purple.600' p={2}>
+				<Heading size='md' color='white'>
+					Repositories Info
 				</Heading>
 			</CardHeader>
 			<CardBody>
-				<ul className='list-disc'>
+				<ul style={{ listStyleType: 'none', padding: 0 }}>
 					{repoData?.map((repo, index) => (
-						<div key={index} className='mt-3 mb-3'>
-							<a href={repo.html_url} target='_blank'>
+						<Box key={index} mb={4} p={4} borderRadius='md' bg='gray.700'>
+							<Link href={repo.html_url} target='_blank'>
 								<Heading
-									textAlign='center'
+									size='lg'
 									mb={2}
-									size='10'
-									className='text-2xl hover:text-purple-700'
+									color='cyan.400'
+									_hover={{ color: 'purple.500' }}
 								>
 									{repo.name}
 								</Heading>
-							</a>
-							{repo.description && <Text>Desc: {repo.description}</Text>}
-							{repo.language && <Text>Language: {repo.language}</Text>}
-							{repo.forks > 0 && <Text>Forks: {repo.forks}</Text>}
-							{repo.stargazers_count > 0 && (
-								<Text>Stars: {repo.stargazers_count}</Text>
+							</Link>
+							{repo.description && <Text mb={2}>{repo.description}</Text>}
+							{repo.language && (
+								<Text mb={1} fontSize='sm' color='gray.300'>
+									Language: {repo.language}
+								</Text>
 							)}
-						</div>
+							{repo.forks > 0 && (
+								<Text mb={1} fontSize='sm' color='gray.300'>
+									Forks: {repo.forks}
+								</Text>
+							)}
+							{repo.stargazers_count > 0 && (
+								<Text mb={1} fontSize='sm' color='gray.300'>
+									Stars: {repo.stargazers_count}
+								</Text>
+							)}
+						</Box>
 					))}
 				</ul>
 			</CardBody>
