@@ -14,4 +14,5 @@ export type githubUserType = {
   email: string | null;
   hireable: boolean;
   twitter_username: string | null;
+	message?: string | undefined;
 };

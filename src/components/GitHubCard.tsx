@@ -12,6 +12,7 @@ import {
 	Image,
 	Input,
 	Text,
+	useToast,
 } from '@chakra-ui/react';
 import {
 	githubRepoRequest,
@@ -29,22 +30,51 @@ const GitHubCard = () => {
 	const [data, setData] = useState<githubUserType | null>();
 	const [repoData, setRepoData] = useState<githubRepoType[] | null>();
 
+	const toast = useToast();
+
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setUser(e.target.value);
 	};
 
 	const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		if(e.key === 'Enter') fetchButton();
-	}
+		if (e.key === 'Enter') fetchButton();
+	};
 
 	const fetchButton = async () => {
+		let loadingToastId;
 		try {
+			loadingToastId = toast({
+				title: 'Searching for user...',
+				description: 'Please, wait',
+				status: 'info',
+				duration: null,
+				isClosable: false,
+			});
 			const info = await githubUserRequest(user);
 			const repoInfo = await githubRepoRequest(user);
 			setData(info);
 			setRepoData(repoInfo);
+			toast.close(loadingToastId);
+			if (info.message === undefined) {
+				toast({
+					title: 'Request completed',
+					description: 'Sucess!',
+					status: 'success',
+					duration: 2000,
+					isClosable: true,
+				});
+			}
 		} catch (error) {
-			console.error('Error fetching data:', error);
+			setData(null);
+			setRepoData(null);
+			if (loadingToastId) toast.close(loadingToastId);
+			toast({
+				title: 'Failed to find user',
+				description: 'Please, check the username',
+				status: 'error',
+				duration: null,
+				isClosable: true,
+			});
 		}
 	};
 
