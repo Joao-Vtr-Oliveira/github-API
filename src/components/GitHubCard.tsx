@@ -33,6 +33,10 @@ const GitHubCard = () => {
 		setUser(e.target.value);
 	};
 
+	const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if(e.key === 'Enter') fetchButton();
+	}
+
 	const fetchButton = async () => {
 		try {
 			const info = await githubUserRequest(user);
@@ -105,6 +109,7 @@ const GitHubCard = () => {
 						placeholder='Username'
 						value={user}
 						onChange={handleChange}
+						onKeyDown={handleKeyPress}
 					/>
 					<Button onClick={fetchButton} colorScheme='teal'>
 						Search
