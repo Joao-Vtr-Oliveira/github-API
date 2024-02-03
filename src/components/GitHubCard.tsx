@@ -84,13 +84,13 @@ const GitHubCard = () => {
 
 	return (
 		<Flex minH='100vh' align='center' justify='center'>
-			<Card className='w-full max-w-2xl h-full overflow-auto'>
-				<CardHeader className='flex items-center justify-center'>
+			<Card w='100%' maxW='42rem' h='100%' overflow='auto'>
+				<CardHeader display='flex' alignItems='center' justifyContent='center'>
 					<Heading as='h1' size='xl'>
 						GitHub API
 					</Heading>
 				</CardHeader>
-				<CardBody className='flex flex-col items-center p-4'>
+				<CardBody display='flex' flexDirection='column' alignItems='center' p={'1rem'}>
 					<Image
 						borderRadius='full'
 						boxSize='150px'
@@ -103,14 +103,14 @@ const GitHubCard = () => {
 					/>
 					<Heading as='h2' size='lg' mt={3} mb={2}>
 						{data?.login ? (
-							<a
+							<Text as='a'
 								href={data.html_url}
 								target='_blank'
 								rel='noopener noreferrer'
-								className='hover:underline hover:text-blue-400'
+								_hover={{textDecoration: 'underline', textColor: 'blue.400'}}
 							>
 								{data.login}
-							</a>
+							</Text>
 						) : (
 							'Nome'
 						)}
@@ -131,7 +131,7 @@ const GitHubCard = () => {
 						)}
 					</Text>
 				</CardBody>
-				<CardFooter justify='center' className='flex p-4'>
+				<CardFooter display='flex' p='1rem' justify='center'>
 					<Input
 						flex='1'
 						mb={{ base: 2, sm: 0 }}

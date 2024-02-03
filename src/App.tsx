@@ -1,10 +1,18 @@
+import { Box } from '@chakra-ui/react';
 import GitHubCard from './components/GitHubCard';
 
 function App() {
 	return (
-		<div className='h-screen flex flex-col justify-center items-center bg-black'>
+		<Box
+			display='flex'
+			flexDirection='column'
+			justifyContent='center'
+			alignItems='center'
+			bg='black'
+			h='100vh'
+		>
 			<GitHubCard />
-		</div>
+		</Box>
 	);
 }
 

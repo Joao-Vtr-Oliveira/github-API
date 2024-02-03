@@ -1,21 +1,22 @@
+import { Box, ListItem, UnorderedList } from '@chakra-ui/react';
 import { githubUserType } from '../types/githubUserType';
 
 const UserDataList = ({ data }: { data: githubUserType }) => {
 	return (
-		<ul className='list-disc'>
+		<UnorderedList >
 			{data && (
-				<div>
-					{data?.company && <li>Company: {data.company}</li>}
-					{data?.blog && <li>blog: {data.blog}</li>}
-					{data?.location && <li>location: {data.location}</li>}
-					{data?.email && <li>email: {data.email}</li>}
-					{data?.hireable && <li>hireable: {data.hireable ? 'Yes' : 'No'}</li>}
+				<Box>
+					{data?.company && <ListItem>Company: {data.company}</ListItem>}
+					{data?.blog && <ListItem>blog: {data.blog}</ListItem>}
+					{data?.location && <ListItem>location: {data.location}</ListItem>}
+					{data?.email && <ListItem>email: {data.email}</ListItem>}
+					{data?.hireable && <ListItem>hireable: {data.hireable ? 'Yes' : 'No'}</ListItem>}
 					{data?.twitter_username && (
-						<li>twitter_username: {data.twitter_username}</li>
+						<ListItem>twitter_username: {data.twitter_username}</ListItem>
 					)}
-				</div>
+				</Box>
 			)}
-		</ul>
+		</UnorderedList>
 	);
 };
 
